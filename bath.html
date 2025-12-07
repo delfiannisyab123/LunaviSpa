@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunavi Spa</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        transition: 0.3s ease-in-out;
+    }
+
+    :root {
+        --bg: #ffffff;
+        --text: #222;
+        --card: #f4f4f4;
+        --primary: #c19a32;
+    }
+
+    .dark {
+        --bg: #121212;
+        --text: #f5f5f5;
+        --card: #1f1f1f;
+        --primary: #d4b665;
+    }
+
+    header {
+        padding: 15px;
+        text-align: center;
+        font-size: 26px;
+        font-weight: bold;
+    }
+
+    .top-controls {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        font-size: 18px;
+    }
+
+    select, button {
+        padding: 6px 10px;
+        border-radius: 8px;
+        border: 1px solid #aaa;
+        background: var(--card);
+        color: var(--text);
+    }
+
+    .categories {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .category {
+        width: 30%;
+        text-align: center;
+    }
+
+    .category img {
+        width: 100%;
+        border-radius: 12px;
+    }
+
+    .section-title {
+        font-size: 25px;
+        font-weight: bold;
+        margin: 15px;
+    }
+
+     .pack {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+    margin: 15px auto;
+    padding: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    text-decoration: none;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    } 
+
+     .img-box img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* agar gambarnya rapi */
+}
+
+    .price-list {
+    list-style: none;
+    margin: 0;
+    padding: 15px;
+    background: #fff;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.price-list li {
+    margin: 5px 0;
+}
+   
+    footer {
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+    }
+
+</style>
+</head>
+
+<body>
+
+<!-- Bahasa & Mode -->
+<div class="top-controls">
+    <select id="language" onchange="changeLanguage()">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+    </select>
+
+    <button onclick="toggleMode()">🌙 / ☀️</button>
+</div>
+
+<header id="title">لونافي سبا</header>
+
+<!-- Kategori -->
+<div class="categories">
+    <div class="category">
+        <a href="pedicure.html"><img src="jpg/pedicure.jpg" height="200px"/></a>
+        <div id="cat1"><h3>خدمة باديكير</h3></div>
+    </div>
+
+    <div class="category">
+        <img src="jpg/morocanb.jpg" height="200px" />
+        <div id="cat2"><h3>الحمام المغربي</h3></div>
+    </div>
+
+    <div class="category">
+        <a href="massage.html">
+            <img src="jpg/masage.jpeg" height="200px" /></a>
+        <div id="cat3"><h3>المساج</h3></div>
+    </div>
+</div>
+
+
+<div class="section-title" id="packages"> خدمات لونافي سبإ </div>
+
+<!-- Paket 1 -->
+ <a href="formbath1.html" class="pack">
+<div class="img-box">
+    <img src="jpg/klasikbath.jpg">
+</div>
+    <ul id="p1" class="price-list">
+        <li>الحمام المغربي الكلاسيكي : ١٩٠ ريال </li>
+    </ul>
+ </a>
+
+<!-- Paket 2 -->
+<a href="formbath2.html" class="pack">
+<div class="img-box">
+    <img src="jpg/goldenbath.jpg">
+</div>
+    <ul id="p2" class="price-list">
+        <li>الحمام الذهبي : ٢٤٠ ريال </li>
+    </ul>
+ </a>
+
+<!-- Paket 3 -->
+<a href="formbath3.html" class="pack">
+<div class="img-box">
+    <img src="jpg/royalbath.jpg">
+</div>
+    <ul id="p3" class="price-list">
+        <li>الحمام الملكي VIP : ٢٩٠ ريال </li>
+    </ul>
+ </a>
+
+<script>
+/* 🌙 MODE TERANG & GELAP */
+function toggleMode() {
+    document.body.classList.toggle("dark");
+}
+
+/* 🌍 SISTEM BAHASA */
+const translations = {
+    ar: {
+        title: "لونافي سبا",
+        cat1: "<h3>خدمة باديكير</h3>",
+        cat2: "<h3>الحمام المغربي</h3>",
+        cat3: "<h3>المساج</h3>",
+        packages: "خدمات لونافي سبإ",
+        p1: "الحمام المغربي الكلاسيكي : ١٩٠ ريال ",
+        p2: "الحمام الذهبي : ٢٤٠ ريال ",
+        p3: "الحمام الملكي VIP : ٢٩٠ ريال "
+    },
+
+    en: {
+         title: "Lunavi Spa",
+        cat1: "<h4>Pedicure service</h4>",
+        cat2: "<h4>Moroccan Bath</h4>",
+        cat3: "<h4>Massage</h4>",
+        packages: "Lunavi Spa Service",
+        p1: "Classic Moroccan Bath : 190 SAR",
+        p2: "Golden Bath : 240 SAR",
+        p3: "Royal Bath VIP : 290 SAR"
+    }
+};
+
+function changeLanguage() {
+    let lang = document.getElementById("language").value;
+    let t = translations[lang];
+
+    document.getElementById("title").innerHTML = t.title;
+    document.getElementById("cat1").innerHTML = t.cat1;
+    document.getElementById("cat2").innerHTML = t.cat2;
+    document.getElementById("cat3").innerHTML = t.cat3;
+    document.getElementById("packages").innerHTML = t.packages;
+
+    // Harga & isi paket
+    document.getElementById("p1").innerHTML = `<li>${t.p1}</li>`;
+    document.getElementById("p2").innerHTML = t.p2;
+    document.getElementById("p3").innerHTML = t.p3;
+
+    // Atur arah tulisan
+    document.body.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lunavi Spa</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        transition: 0.3s;
+        background: var(--bg);
+        color: var(--text);
+    }
+
+    :root {
+        --bg: #ffffff;
+        --text: #222;
+        --card: #f4f4f4;
+    }
+
+    .dark {
+        --bg: #111;
+        --text: #f1f1f1;
+        --card: #222;
+    }
+
+    header {
+        padding: 20px;
+        text-align: center;
+        background: linear-gradient(135deg, #b88d5d, #e5c6a0);
+        color: white;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    .container {
+        padding: 20px;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .card {
+        background: var(--card);
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    select, input, textarea {
+        width: 100%;
+        padding: 12px;
+        margin-top: 8px;
+        border-radius: 8px;
+        border: 1px solid #888;
+        background: var(--bg);
+        color: var(--text);
+    }
+
+    button {
+        width: 100%;
+        padding: 14px;
+        margin-top: 10px;
+        border: none;
+        background: #b88d5d;
+        color: white;
+        font-size: 18px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    button:hover {
+        background: #d7b88a;
+    }
+
+    .toggle-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #333;
+        color: white;
+        padding: 10px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .card p {
+    background: rgba(0,0,0,0.05);
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+.dark .card p {
+    background: rgba(255,255,255,0.08);
+}
+
+</style>
+</head>
+<body>
+
+<div class="toggle-btn" onclick="toggleMode()">🌓 Mode</div>
+
+<header id="title">Lunavi Spa</header>
+
+<div class="container">
+
+    <div class="card">
+        <label><b>🌍 Language / اللغة</b></label>
+        <select id="language" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="ar">عربي</option>
+        </select>
+    </div>
+
+    <div class="card">
+        <h2 id="formTitle">Spa Booking Form</h2>
+        <label id="nameLabel">Name</label>
+        <input type="text" id="name" placeholder="Enter your name"> 
+
+        <label id="addressLabel">Address</label>
+        <input type="text" id="address" placeholder="Enter your address">
+
+        <label id="serviceLabel">Choose Spa Service</label>
+        <label id="phoneLabel">WhatsApp Number</label>
+<input type="text" id="phone" placeholder="Enter your WhatsApp number">
+
+        <select id="service">
+            <option value="Massage Relax">Air Massage</option>
+        </select>
+
+        <button onclick="sendWhatsApp()" id="orderBtn">Send Order to WhatsApp</button>
+    </div>
+
+    <div class="card">
+    <h2 id="bankTitle">Bank Transfer</h2>
+
+    <p id="bank1">
+        <b>البنك العربي الوطني</b><br>
+        <span>SA6330100949000010154064</span>
+    </p>
+
+    <p id="bank2">
+        <b>البنك العربي الوطني</b><br>
+        <span>SA1330100949000010161851</span>
+    </p>
+</div>
+
+
+</div>
+
+<script>
+/* 🌍 Sistem Bahasa */
+const translations = {
+    ar: {
+    formTitle: "نموذج حجز السبا",
+    nameLabel: "الاسم",
+    addressLabel: "العنوان",
+    phoneLabel: "رقم الواتساب",
+    serviceLabel: "اختر خدمة السبا",
+    orderBtn: "إرسال الطلب إلى واتساب",
+    waText: "مرحبا، أود الحجز في لونافي سبا",
+    emptyMsg: "يرجى تعبئة جميع الحقول قبل الإرسال"
+},
+en: {
+    formTitle: "Spa Booking Form",
+    nameLabel: "Name",
+    addressLabel: "Address",
+    phoneLabel: "WhatsApp Number",
+    serviceLabel: "Choose Spa Service",
+    orderBtn: "Send Order to WhatsApp",
+    waText: "Hello, I would like to book at Lunavi Spa",
+    emptyMsg: "Please fill all fields before sending"
+}
+
+};
+
+function changeLanguage() {
+    let lang = document.getElementById("language").value;
+    let t = translations[lang];
+
+    document.getElementById("formTitle").innerHTML = t.formTitle;
+    document.getElementById("nameLabel").innerHTML = t.nameLabel;
+    document.getElementById("addressLabel").innerHTML = t.addressLabel;
+    document.getElementById("serviceLabel").innerHTML = t.serviceLabel;
+    document.getElementById("orderBtn").innerHTML = t.orderBtn;
+    document.getElementById("phoneLabel").innerHTML = t.phoneLabel;
+    document.body.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+}
+
+/* 🌙 Dark Mode */
+function toggleMode() {
+    document.body.classList.toggle("dark");
+}
+
+/* 📲 Kirim ke WhatsApp */
+function sendWhatsApp() {
+    let name = document.getElementById("name").value.trim();
+    let address = document.getElementById("address").value.trim();
+    let service = document.getElementById("service").value.trim();
+    let phoneInput = document.getElementById("phone").value.trim();
+
+    let lang = document.getElementById("language").value;
+    let t = translations[lang];
+
+    if (name === "" || address === "" || service === "" || phoneInput === "") {
+        alert(t.emptyMsg);
+        return;
+    }
+
+    let message =
+        `${t.waText}%0A%0A` +
+        `🔹 Name: ${name}%0A` +
+        `🔹 Address: ${address}%0A` +
+        `🔹 WhatsApp: ${phoneInput}%0A` +
+        `🔹 Service: ${service}`;
+
+    // Nomor tujuan
+    let phone = "+966559820533";
+
+    // Kirim ke WhatsApp
+    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+}
+
+window.onload = function() {
+    document.getElementById("language").value = "ar";
+    changeLanguage();
+};
+
+</script>
+
+</body>
+</html>

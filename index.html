@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunavi Spa</title>
+
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: "Poppins", sans-serif;
+        overflow: hidden;
+    }
+
+    /* ===== Background Video ===== */
+    #bgVideo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+    }
+
+    /* ===== Overlay Gelap ===== */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.45);
+        z-index: -1;
+    }
+
+    /* ===== Konten Tengah ===== */
+    .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        width: 90%;
+        max-width: 600px;
+    }
+
+    h1 {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    p {
+        font-size: 20px;
+        line-height: 1.8;
+        margin-bottom: 35px;
+    }
+
+    /* ===== Tombol Utama ===== */
+    .btn-main {
+        background: white;
+        color: black;
+        padding: 14px 40px;
+        border-radius: 30px;
+        font-size: 20px;
+        border: none;
+        cursor: pointer;
+        transition: .3s;
+    }
+    .btn-main:hover {
+        transform: scale(1.05);
+    }
+
+    /* ===== Tombol Ganti Bahasa ===== */
+    .lang-btn {
+        margin-top: 20px;
+        background: rgba(255,255,255,0.7);
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+        border: none;
+    }
+</style>
+</head>
+<body>
+
+<!-- ===== VIDEO BACKGROUND ===== -->
+<video autoplay muted loop id="bgVideo">
+    <source src="video/videolunavi.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<!-- ===== KONTEN ===== -->
+<div class="content">
+
+    <!-- TEXT ARAB -->
+    <h1 id="title-ar">مرحبا بكم في لو مافي سبإ</h1>
+    <p id="desc-ar">
+        حساب رسمي للحجز تواصل معنا. (الرياض)  
+        مساج بجميع أنواعه، حمام مغربى، بدكير ومنكير
+    </p>
+
+    <!-- TEXT INGGRIS (DISEMBUNYIKAN DIAWAL) -->
+    <h1 id="title-en" style="display:none;">Welcome to Lunavi Spa</h1>
+    <p id="desc-en" style="display:none;">
+        Official booking account. (Riyadh)  
+        All types of massage, Moroccan bath, pedicure & manicure.
+    </p>
+
+    <!-- TOMBOL MASUK -->
+    <a href="massage.html"><button class="btn-main" id="btn-text">ادخل الآن</button></a>
+
+    <!-- TOMBOL GANTI BAHASA -->
+    <br>
+    <button class="lang-btn" onclick="switchLang()">English / العربية</button>
+
+</div>
+
+<script>
+function switchLang() {
+    const arTitle = document.getElementById("title-ar");
+    const arDesc = document.getElementById("desc-ar");
+    const enTitle = document.getElementById("title-en");
+    const enDesc = document.getElementById("desc-en");
+    const btnText = document.getElementById("btn-text");
+
+    // Jika Arab → ganti ke Inggris
+    if (arTitle.style.display !== "none") {
+        arTitle.style.display = "none";
+        arDesc.style.display = "none";
+        enTitle.style.display = "block";
+        enDesc.style.display = "block";
+        btnText.innerHTML = "open";
+    } 
+    // Jika Inggris → ganti ke Arab
+    else {
+        arTitle.style.display = "block";
+        arDesc.style.display = "block";
+        enTitle.style.display = "none";
+        enDesc.style.display = "none";
+        btnText.innerHTML = "ادخل الآن";
+    }
+}
+</script>
+
+</body>
+</html>
